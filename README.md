@@ -40,11 +40,7 @@ A polynomial abstraction using a `std::vector<double>` to store coefficients.
 
 Coefficients are stored from the constant term upward:
 
-```text
-Polynomial{2, -3, 1}
-       ↓
-1x² - 3x + 2
-```
+`Polynomial{2, -3, 1}` Equals $y = x^2 - 3x + 1$
 
 The library supports:
 
@@ -77,112 +73,9 @@ auto integral = p.integral();
 
 auto product = p * derivative;
 ```
+Which equals: 
 
-For example:
+$p(x) = x² - 3x + 2$
 
-```text
-p(x) = x² - 3x + 2
+$p'(x) = 2x - 3$
 
-p'(x) = 2x - 3
-```
-
-## Robotics Relevance
-
-Although these libraries are not complete robotics systems, the mathematical abstractions they provide are relevant to robotics programming.
-
-`pt::Points` can be used to represent:
-
-* Robot positions
-* Waypoints
-* Distances between objects
-* 2D movement
-* Geometric transformations
-
-`pt::Polynomial` provides mathematical operations that can be useful for:
-
-* Interpolation
-* Mathematical modeling
-* Trajectory representation
-* Motion-related calculations
-* Sensor or calibration models
-
-These projects were developed as an exploration of how mathematical concepts can be represented as reusable C++ abstractions.
-
-## Technologies
-
-* C++
-* C++20 Concepts
-* Templates
-* STL
-* Operator overloading
-* Object-oriented programming
-* Generic programming
-* Mathematical algorithms
-
-## Project Structure
-
-```text
-pt/
-├── Points.hpp
-├── Polynomials.hpp
-└── README.md
-```
-
-## Motivation
-
-These libraries were created to improve my understanding of C++ beyond basic procedural programming, particularly in designing reusable interfaces and translating mathematical concepts into software abstractions.
-
-````
-
-### One thing I'd add specifically for the robotics registration
-
-I'd put a **very short intro above the technical details**, something that tells the reviewer *why they're seeing these projects*:
-
-# About This Portfolio
-
-This portfolio contains two of my C++ projects: `pt::Points` and `pt::Polynomial`.
-
-Both projects focus on implementing mathematical concepts as reusable C++ abstractions. I developed them to strengthen my understanding of C++ templates, concepts, operator overloading, STL containers, and algorithm design.
-
-While these are not complete robotics applications, the concepts represented by both libraries are directly applicable to robotics programming, particularly coordinate geometry, spatial calculations, mathematical modeling, and trajectory-related computation.
-
-I am currently expanding my experience toward robotics software development and intend to apply these programming fundamentals to larger robotics projects.
-
-I actually think that last paragraph is **important**.
-
-Don't write something like:
-
-> "This is my robotics project."
-
-because it isn't.
-
-Instead:
-
-> **"These are my existing C++ projects, and here's how the skills behind them transfer to robotics."**
-
-That's a much stronger presentation of your situation.
-
-Also, I'd **absolutely include the source code**, not just screenshots. For a robotics team, a reviewer who knows C++ can learn considerably more from seeing something like:
-
-```cpp
-template <typename T>
-concept numeric = std::integral<T> || std::floating_point<T>;
-````
-
-and
-
-```cpp
-Polynomial& operator*=(const Polynomial& other)
-```
-
-than from a pretty screenshot of the output.
-
-One last thing: before submitting, I'd make **one tiny demo program** that uses *both* libraries together. For example, generate polynomial points:
-
-```cpp
-pt::Polynomial trajectory{0, 2, 1};
-
-auto points = trajectory.plot_point(-5, 5, 0.1);
-```
-
-That would give you a very clean bridge between the two projects: **mathematical function → generated 2D points**. Even without the maze solver, that's a neat little demonstration of how your libraries can compose.
